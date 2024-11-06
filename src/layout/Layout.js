@@ -19,10 +19,16 @@ import Progressbar from "./Progressbar";
 
 const Layout = ({ children, dark }) => {
   const [siteInfo, setSiteInfo] = useState({});
-  useEffect(async () => {
-    setSiteInfo(await fatchData("/static/siteSetting.json"));
-    dataImage();
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const data = await fatchData("/static/siteSetting.json")
+      setSiteInfo(data);
+      dataImage();
+    };
+    fetchDataAsync();
   }, []);
+
   useEffect(() => {
     wowJsAnimation();
     aTagClick();
