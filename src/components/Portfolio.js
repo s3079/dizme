@@ -28,7 +28,7 @@ const Portfolio = () => {
         },
       });
     }, 500);
-    return () => isotope.current.destroy();
+    return () => isotope.current && isotope.current.destroy();
   }, []);
   useEffect(() => {
     if (isotope.current) {

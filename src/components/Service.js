@@ -2,13 +2,21 @@ import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { fatchData } from "../utilits";
 import ServicePopup from "./popup/ServicePopup";
+import VanillaTilt from "vanilla-tilt";
 
 const Service = ({ dark }) => {
   const [data, setData] = useState([]);
   const [popupdata, setPopupdata] = useState({});
   const [popup, setPopup] = useState(false);
-  useEffect(async () => {
-    setData(await fatchData("/static/service.json"));
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch data
+      const res = await fatchData("/static/service.json")
+      setData(res)
+    };
+    fetchData();
     setTimeout(() => {
       let VanillaTilt = require("vanilla-tilt");
       VanillaTilt.init(document.querySelectorAll(".tilt-effect"), {

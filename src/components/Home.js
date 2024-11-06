@@ -4,8 +4,14 @@ import { fatchData } from "../utilits";
 
 const Home = ({ dark }) => {
   const [data, setData] = useState({});
-  useEffect(async () => {
-    setData(await fatchData("/static/info.json"));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch data
+      const data = await fatchData("/static/info.json")
+      setData(data)
+    };
+    fetchData();
   }, []);
 
   return (

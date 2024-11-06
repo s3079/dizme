@@ -5,9 +5,14 @@ const News = () => {
   const [data, setData] = useState([]);
   const [popupData, setPopupData] = useState({});
   const [popup, setPopup] = useState(false);
-  useEffect(async () => {
-    setData(await fatchData("/static/blog.json"));
-    aTagClick();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch data
+      const res = await fatchData("/static/blog.json")
+      setData(res)
+    };
+    fetchData();
   }, []);
   return (
     <div className="dizme_tm_section" id="blog">

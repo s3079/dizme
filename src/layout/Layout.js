@@ -30,7 +30,7 @@ const Layout = ({ children, dark }) => {
   }, []);
 
   useEffect(() => {
-    wowJsAnimation();
+    // wowJsAnimation();
     aTagClick();
     window.addEventListener("scroll", scroll_);
     window.addEventListener("scroll", stickyNav);

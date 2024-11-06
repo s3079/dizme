@@ -1,5 +1,11 @@
 // Đã loại bỏ import ReactDOM vì không còn sử dụng
 // import ReactDOM from "react-dom";
+import dynamic from 'next/dynamic';
+
+const WOW = dynamic(
+    () => import('wowjs').then((mod) => mod.WOW),
+    { ssr: false }
+);
 
 const preloader_ = () => {
   let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
@@ -23,15 +29,25 @@ const preloader_ = () => {
   }
 };
 
-export const wowJsAnimation = () => {
-  setTimeout(() => {
-    if (typeof window !== "undefined") {
-      window.WOW = require("wowjs");
-    }
-    new WOW.WOW().init();
-  }, 500);
-};
-
+// export const wowJsAnimation = () => {
+//   if (typeof window !== "undefined") {
+//     WOW().then((WOW) => {
+//       setTimeout(() => {
+//         const wow = new WOW({
+//           live: false,
+//         });
+//         wow.init();
+//       }, 500);
+//     });
+//     // const WOW = require("wowjs").WOW;
+//     // setTimeout(() => {
+//     //   const wow = new WOW({
+//     //     live: false,
+//     //   });
+//     //   wow.init();
+//     // }, 500);
+//   }
+// };
 export const customCursor = () => {
   var myCursor = document.querySelectorAll(".mouse-cursor"),
       hamburger = document.querySelector(".hamburger"),

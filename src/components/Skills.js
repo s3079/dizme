@@ -3,9 +3,18 @@ import { activeSkillProgress, fatchData } from "../utilits";
 
 const Skills = ({ dark }) => {
   const [data, setData] = useState({});
-  useEffect(async () => {
-    setData(await fatchData("/static/info.json"));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch data
+      const res = await fatchData("/static/info.json")
+      setData(res)
+    };
+    fetchData();
   }, []);
+
+
+
   useEffect(() => {
     window.addEventListener("scroll", activeSkillProgress);
   }, []);

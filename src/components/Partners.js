@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import { fatchData } from "../utilits";
 const Partners = ({ dark }) => {
   const [data, setData] = useState([]);
-  useEffect(async () => {
-    setData(await fatchData("/static/partners.json"));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch data
+      const res = await fatchData("/static/partners.json")
+      setData(res)
+    };
+    fetchData();
   }, []);
   return (
     <div className="dizme_tm_section">
